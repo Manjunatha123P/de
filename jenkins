@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout scm') {
+            steps {
+                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'mnj', url: 'https://github.com/Manjunatha123P/project.git']])
+            }
+        }
+stage('build') {
+            steps {
+                bat 'mvn package'
+            }
+       
+        }
+    }
+}
